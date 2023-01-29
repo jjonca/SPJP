@@ -1,17 +1,14 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include"figury.h"
+#include"opcje.h"
 
 int main()
 {
 int wybor = 0;
 while(1)
 {
-puts("Co chcesz zrobic?");
-puts("Oblicz pole i obwod:");
+puts("W co chcesz zagrac?");
 puts("0 - wyjdz");
-puts("1 - kwadrat");
-puts("2 - kolo");
+puts("1 - odgadnij liczbe");
+puts("2 - zgadnij sume oczek");
 fscanf(stdin,"%i", &wybor);
 
 switch(wybor)
@@ -20,10 +17,10 @@ case 0 :
 exit(0);
 break;
 case 1 :
-kwadrat();
+liczba();
 break;
 case 2:
-kolo();
+oczko();
 break;
 default :
 puts("Podaj opcje.");
