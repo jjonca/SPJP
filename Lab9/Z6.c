@@ -21,6 +21,7 @@ void figura(struct Czworokat);
 
 struct Prosta prosta(struct Punkt, struct Punkt);
 int rownolegla(struct Prosta, struct Prosta);
+int prostopadla(struct Prosta, struct Prosta);
 
 int main()
 {
@@ -57,7 +58,7 @@ return pr;
 
 int rownolegla(struct Prosta p1, struct Prosta p2)
 {
-if(p1.a == p2.a)
+if(p1.a - p2.a<0.000001)
 {
     //puts("Proste sa rownolegle.");
     return 1;
@@ -66,17 +67,30 @@ if(p1.a == p2.a)
 return 0;
 }
 
+int prostopadla(struct Prosta p1, struct Prosta p2)
+{
+if(p1.a + -p2.a<0.00001)
+{
+    //puts("Proste sa prostopadle.");
+    return 1;
+}
+//else puts("Proste nie sa prostopadle.");
+return 0;
+}
+
 void figura(struct Czworokat c1)
 {
 int rown = 0;
+int prost = 0;
 struct Prosta pr1 = prosta(c1.p1, c1.p2);
 struct Prosta pr2 = prosta(c1.p2, c1.p3);
 struct Prosta pr3 = prosta(c1.p3, c1.p4);
 struct Prosta pr4 = prosta(c1.p4, c1.p1);
 rown = rownolegla(pr1, pr3);
 rown += rownolegla(pr2, pr4);
-
-if(((c1.p1.x == -c1.p3.y) && (c1.p1.y == -c1.p3.x)))
+prost = prostopadla(pr1,pr2);
+prost+= prostopadla(pr3,pr4);
+if(rown == 2 && prost == 2)
 {
     puts("To kwadrat.");
 }
